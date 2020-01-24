@@ -21,14 +21,20 @@ function dynamic_yield_page_attachments(array &$page) {
 
   $page['#attached']['html_head'][] = [[
     '#tag' => 'script',
-    '#attributes' => ['src' => $dpath],
+    '#attributes' => [
+      'src' => $dpath,
+      'type' => 'text/javascript​',
+    ],
   ],
     'dpath',
   ];
 
   $page['#attached']['html_head'][] = [[
     '#tag' => 'script',
-    '#attributes' => ['src' => $spath],
+    '#attributes' => [
+      'src' => $spath,
+      'type' => 'text/javascript​',
+    ],
   ],
     'spath',
   ];
