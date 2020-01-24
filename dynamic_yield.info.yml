@@ -1,0 +1,7 @@
+name: Dynamic yield
+type: module
+description: Creates integration between dynamic yield and drupal.
+package: Analytics
+type: module
+version: 1.0
+core: 8.x

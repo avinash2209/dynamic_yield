@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Dynamic yield.
+ *
+ * Adds the required Javascript to your site to allow tracking by the Dynamic
+ * yield.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function dynamic_yield_page_attachments(array &$page) {
+
+  /** @var \Drupal\dynamic_yield\DynamicYieldService $dynamic_yield */
+  $dynamic_yield = \Drupal::service('dynamic_yield.dynamic_yield');
+
+  $dpath = $dynamic_yield->getDynamicYieldDynamicScriptCode();
+  $spath = $dynamic_yield->getDynamicYieldStaticScriptCode();
+
+  $page['#attached']['html_head'][] = [[
+    '#tag' => 'script',
+    '#attributes' => ['src' => $dpath],
+  ],
+    'dpath',
+  ];
+
+  $page['#attached']['html_head'][] = [[
+    '#tag' => 'script',
+    '#attributes' => ['src' => $spath],
+  ],
+    'spath',
+  ];
+
+}
