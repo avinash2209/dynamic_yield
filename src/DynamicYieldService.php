@@ -67,7 +67,7 @@ class DynamicYieldService implements DynamicYieldServiceInterface {
    */
   public function getSiteId() {
     $siteId = $this->configFactory->get('dynamic_yield.settings')->get('site_id');
-    return (isset($siteId) && !empty($siteId)) ? $siteId : FALSE ;
+    return (isset($siteId) && !empty($siteId)) ? $siteId : FALSE;
   }
 
 }

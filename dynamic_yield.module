@@ -26,7 +26,7 @@ function dynamic_yield_page_attachments(array &$page) {
         'src' => $dpath,
       ],
     ],
-      'dpath'
+      'dpath',
     ];
 
     $page['#attached']['html_head'][] = [[
@@ -35,7 +35,7 @@ function dynamic_yield_page_attachments(array &$page) {
         'src' => $spath,
       ],
     ],
-      'spath'
+      'spath',
     ];
   }
   $page['#cache']['tags'][] = 'config:dynamic_yield.settings';
