@@ -1,7 +1,9 @@
 name: Dynamic yield
 type: module
 description: Creates integration between dynamic yield and drupal.
-package: Analytics
+package: Others
 type: module
-version: 1.0
 core: 8.x
+core_version_requirement: ^8 || ^9
+configure: dynamic_yield.settings_form
+project: 'dynamic_yield'

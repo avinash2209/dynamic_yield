@@ -19,24 +19,24 @@ function dynamic_yield_page_attachments(array &$page) {
   $dpath = $dynamic_yield->getDynamicYieldDynamicScriptCode();
   $spath = $dynamic_yield->getDynamicYieldStaticScriptCode();
 
-  $page['#attached']['html_head'][] = [[
-    '#tag' => 'script',
-    '#attributes' => [
-      'src' => $dpath,
-      'type' => 'text/javascript​',
+  if ($dynamic_yield->getSiteId() && !(\Drupal::service('router.admin_context')->isAdminRoute())) {
+    $page['#attached']['html_head'][] = [[
+      '#tag' => 'script',
+      '#attributes' => [
+        'src' => $dpath,
+      ],
     ],
-  ],
-    'dpath',
-  ];
+      'dpath'
+    ];
 
-  $page['#attached']['html_head'][] = [[
-    '#tag' => 'script',
-    '#attributes' => [
-      'src' => $spath,
-      'type' => 'text/javascript​',
+    $page['#attached']['html_head'][] = [[
+      '#tag' => 'script',
+      '#attributes' => [
+        'src' => $spath,
+      ],
     ],
-  ],
-    'spath',
-  ];
-
+      'spath'
+    ];
+  }
+  $page['#cache']['tags'][] = 'config:dynamic_yield.settings';
 }

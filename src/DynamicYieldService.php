@@ -42,18 +42,32 @@ class DynamicYieldService implements DynamicYieldServiceInterface {
    * {@inheritdoc}
    */
   public function getDynamicYieldDynamicScriptCode() {
-    $dynamic_yield_dynamic_script_code = str_replace('{{site_id}}', $this->configFactory->get('dynamic_yield.settings')->get('site_id'), self::DYNAMIC_YEILD_DYNAMIC_SCRIPT_CODE);
-
-    return $dynamic_yield_dynamic_script_code;
+    $siteId = $this->getSiteId();
+    if ($siteId) {
+      $dynamic_yield_dynamic_script_code = str_replace('{{site_id}}', $siteId, self::DYNAMIC_YEILD_DYNAMIC_SCRIPT_CODE);
+      return $dynamic_yield_dynamic_script_code;
+    }
+    return FALSE;
   }
 
   /**
    * {@inheritdoc}
    */
   public function getDynamicYieldStaticScriptCode() {
-    $dynamic_yield_static_script_code = str_replace('{{site_id}}', $this->configFactory->get('dynamic_yield.settings')->get('site_id'), self::DYNAMIC_YEILD_STATIC_SCRIPT_CODE);
+    $siteId = $this->getSiteId();
+    if ($siteId) {
+      $dynamic_yield_static_script_code = str_replace('{{site_id}}', $siteId, self::DYNAMIC_YEILD_STATIC_SCRIPT_CODE);
+      return $dynamic_yield_static_script_code;
+    }
+    return FALSE;
+  }
 
-    return $dynamic_yield_static_script_code;
+  /**
+   * {@inheritdoc}
+   */
+  public function getSiteId() {
+    $siteId = $this->configFactory->get('dynamic_yield.settings')->get('site_id');
+    return (isset($siteId) && !empty($siteId)) ? $siteId : FALSE ;
   }
 
 }

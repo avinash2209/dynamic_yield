@@ -42,23 +42,7 @@ class DynamicYieldSettingsForm extends ConfigFormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Site ID'),
       '#default_value' => $config->get('site_id'),
-      '#required' => TRUE,
     ];
-
-    $form['basic_settings']['exclude_admin_pages'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Exclude admin pages'),
-      '#default_value' => $config->get('exclude_admin_pages'),
-    ];
-
-    $form['basic_settings']['excluded_roles'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Exclude Dynamic yield for the following roles'),
-      '#options' => array_map('\Drupal\Component\Utility\Html::escape', user_role_names()),
-      '#default_value' => $config->get('excluded_roles'),
-    ];
-
-    $form['#attached']['library'][] = 'dynamic_yield/dynamic_yield.admin';
 
     return parent::buildForm($form, $form_state);
   }
@@ -71,8 +55,6 @@ class DynamicYieldSettingsForm extends ConfigFormBase {
 
     $this->config('dynamic_yield.settings')
       ->set('site_id', $values['site_id'])
-      ->set('exclude_admin_pages', $values['exclude_admin_pages'])
-      ->set('excluded_roles', $values['excluded_roles'])
       ->save();
 
     parent::submitForm($form, $form_state);
