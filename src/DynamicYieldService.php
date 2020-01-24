@@ -9,7 +9,7 @@ use Drupal\Core\Config\ConfigFactoryInterface;
  *
  * @package Drupal\dynamic_yield
  */
-class DynamicYieldService implements DynamicYieldServiceInterface {
+class DynamicYieldService {
 
   /**
    * Dynamic yield dynamic base code.
